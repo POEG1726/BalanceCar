@@ -1,0 +1,88 @@
+/*
+    icm42688p.h
+    Created on Feb 06, 2025
+    Author: @POEG1726
+*/
+
+#ifndef _ICM42688P_H_
+#define _ICM42688P_H_
+
+#include "main.h"
+
+enum icm42688_afs
+{
+    ICM42688_AFS_16G,		// default
+    ICM42688_AFS_8G,
+    ICM42688_AFS_4G,
+    ICM42688_AFS_2G,
+    NUM_ICM42688__AFS
+};
+
+enum icm42688_aodr
+{
+    ICM42688_AODR_32KHZ,
+    ICM42688_AODR_16KHZ,
+    ICM42688_AODR_8KHZ,
+    ICM42688_AODR_4KHZ,
+    ICM42688_AODR_2KHZ,
+    ICM42688_AODR_1KHZ,// default
+    ICM42688_AODR_200HZ,
+    ICM42688_AODR_100HZ,
+    ICM42688_AODR_50HZ,
+    ICM42688_AODR_25HZ,
+    ICM42688_AODR_12_5HZ,
+    ICM42688_AODR_6_25HZ,
+    ICM42688_AODR_3_125HZ,
+    ICM42688_AODR_1_5625HZ,
+    ICM42688_AODR_500HZ,
+    NUM_ICM42688_AODR
+};
+
+enum icm42688_gfs
+{
+    ICM42688_GFS_2000DPS,// default
+    ICM42688_GFS_1000DPS,
+    ICM42688_GFS_500DPS,
+    ICM42688_GFS_250DPS,
+    ICM42688_GFS_125DPS,
+    ICM42688_GFS_62_5DPS,
+    ICM42688_GFS_31_25DPS,
+    ICM42688_GFS_15_625DPS,
+    NUM_ICM42688_GFS
+};
+
+enum icm42688_godr
+{
+    ICM42688_GODR_32000HZ,
+    ICM42688_GODR_16000HZ,
+    ICM42688_GODR_8000HZ,
+    ICM42688_GODR_4000HZ,
+    ICM42688_GODR_2000HZ,
+    ICM42688_GODR_1000HZ,// default
+    ICM42688_GODR_200HZ,
+    ICM42688_GODR_100HZ,
+    ICM42688_GODR_50HZ,
+    ICM42688_GODR_25HZ,
+    ICM42688_GODR_12_5HZ,
+    ICM42688_GODR_X0HZ,
+    ICM42688_GODR_X1HZ,
+    ICM42688_GODR_X2HZ,
+    ICM42688_GODR_500HZ,
+    NUM_ICM42688_GODR
+};
+
+typedef struct
+{
+    float accel_x;
+    float accel_y;
+    float accel_z;
+    float gyro_x;
+    float gyro_y;
+    float gyro_z;
+    float Temperature;
+} ICM42688_Data_t;
+
+void ICM42688_Init(enum icm42688_afs afs, enum icm42688_aodr aodr, enum icm42688_gfs gfs, enum icm42688_godr godr);
+void ICM42688_ReadData(ICM42688_Data_t* Data);
+
+#endif // _ICM42688P_H_
