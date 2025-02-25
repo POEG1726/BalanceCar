@@ -1,1 +1,1 @@
-pip install "PySide6-Fluent-Widgets[full]"
+"PySide6-Fluent-Widgets[full]"
