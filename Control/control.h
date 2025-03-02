@@ -1,5 +1,5 @@
 /*
-    Control.h
+    control.h
     Created on Feb 12, 2025 
     Author: @POEG1726
 */

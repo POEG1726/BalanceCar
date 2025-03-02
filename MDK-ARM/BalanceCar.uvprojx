@@ -576,17 +576,52 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Drivers/BSP/LCD</GroupName>
+          <GroupName>Drivers/BSP/Display</GroupName>
           <Files>
+            <File>
+              <FileName>font.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\Display\font.h</FilePath>
+            </File>
             <File>
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Drivers\BSP\LCD\lcd.c</FilePath>
+              <FilePath>..\Drivers\BSP\Display\lcd.c</FilePath>
             </File>
             <File>
               <FileName>lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\Drivers\BSP\LCD\lcd.h</FilePath>
+              <FilePath>..\Drivers\BSP\Display\lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>st7735.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Display\st7735.c</FilePath>
+            </File>
+            <File>
+              <FileName>st7735.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\Display\st7735.h</FilePath>
+            </File>
+            <File>
+              <FileName>st7735_reg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Display\st7735_reg.c</FilePath>
+            </File>
+            <File>
+              <FileName>st7735_reg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\Display\st7735_reg.h</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\Display\oled.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\Display\oled.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -716,6 +751,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Drivers/BSP/KEY</GroupName>
+          <Files>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\KEY\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\KEY\key.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/BSP/LED</GroupName>
+          <Files>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\BSP\LED\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\BSP\LED\LED.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -734,5 +799,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>BalanceCar</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

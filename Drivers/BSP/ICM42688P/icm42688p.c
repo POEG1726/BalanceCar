@@ -23,7 +23,8 @@
 #define REG_GYRO_DATA_Y0  0x28
 #define REG_GYRO_DATA_Z1  0x29
 #define REG_GYRO_DATA_Z0  0x2A
-#define REG_INTF_CONFIG1  0x4D
+#define REG_INT_CONFIG 0x14
+#define REG_INT_SOURCE0 0x65
 #define REG_PWR_MGMT0  0x4E
 #define REG_GYRO_CONFIG0  0x4F
 #define REG_ACCEL_CONFIG0  0x50
@@ -70,7 +71,6 @@ void ICM42688_Init(enum icm42688_afs afs, enum icm42688_aodr aodr, enum icm42688
     ICM42688_ReadReg(REG_WHO_AM_I, &DeviceID);
     if (DeviceID != 0x47)
     {
-        ESP32_Send("ICM42688: Device ID Error", 25);
         return;
     }
     ICM42688_WriteReg(REG_DEVICE_CONFIG, 0x01); //software reset
@@ -78,11 +78,15 @@ void ICM42688_Init(enum icm42688_afs afs, enum icm42688_aodr aodr, enum icm42688
     ICM42688_WriteReg(REG_PWR_MGMT0, 0x00); //power on
     HAL_Delay(1);
 
+    // Interrupt Configuration
+    ICM42688_WriteReg(REG_INT_CONFIG, 0x06);
+    ICM42688_WriteReg(REG_INT_SOURCE0, 0x04); //Enable Data Ready Interrupt at pin INT0
     // Set Accelerometer
     ICM42688_WriteReg(REG_ACCEL_CONFIG0, (afs << 5) | (aodr + 1));
     // Set Gyroscope
     ICM42688_WriteReg(REG_GYRO_CONFIG0, (gfs << 5) | (godr + 1));
-    ICM42688_ReadReg(REG_PWR_MGMT0, 0x0f); // Set Gyro and Accel to Low Noise Mode
+    uint8_t val = 0x0f;
+    ICM42688_ReadReg(REG_PWR_MGMT0, &val); // Set Gyro and Accel to Low Noise Mode
     HAL_Delay(1);
 
     switch (afs)
@@ -144,13 +148,13 @@ void ICM42688_ReadData(ICM42688_Data_t* Data)
     Data->Temperature = ((DataBuffer[0] << 8) | DataBuffer[1]) / 132.48 + 25;
 
     // Read Accel Data
-    ICM42688_ReadMultiReg(REG_ACCEL_DATA_X1, DataBuffer[0], 6);
+    ICM42688_ReadMultiReg(REG_ACCEL_DATA_X1, DataBuffer, 6);
     Data->accel_x = (DataBuffer[0] << 8) | DataBuffer[1];
     Data->accel_y = (DataBuffer[2] << 8) | DataBuffer[3];
     Data->accel_z = (DataBuffer[4] << 8) | DataBuffer[5];
 
     // Read Gyro Data
-    ICM42688_ReadMultiReg(REG_GYRO_DATA_X1, DataBuffer[0], 6);
+    ICM42688_ReadMultiReg(REG_GYRO_DATA_X1, DataBuffer, 6);
     Data->gyro_x = (DataBuffer[0] << 8) | DataBuffer[1];
     Data->gyro_y = (DataBuffer[2] << 8) | DataBuffer[3];
     Data->gyro_z = (DataBuffer[4] << 8) | DataBuffer[5];

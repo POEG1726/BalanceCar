@@ -300,38 +300,3 @@ class Ui_MainWindow(object):
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
-
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u7f51\u7edc\u8c03\u8bd5\u5de5\u5177", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"\u63a5\u6536\u7aef\uff1a", None))
-        self.rcvTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"No Message was Received", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001\u7aef\uff1a", None))
-        self.sendTextBox.setPlainText("")
-        self.sendTextBox.setPlaceholderText(QCoreApplication.translate("MainWindow", u"No Message to send", None))
-        self.ckBxHex.setText(QCoreApplication.translate("MainWindow", u"HEX", None))
-        self.btnSendData.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001", None))
-        self.btnClearTextBox.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u7a7a", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u5b57\u8282\u6570\u636e\u5217\u8868\uff1a", None))
-        self.btnClearByteData.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u7a7a", None))
-        self.btnShowByteData.setText(QCoreApplication.translate("MainWindow", u"\u5c55\u793a", None))
-        self.btnSaveData.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58", None))
-        self.btnOpenData.setText(QCoreApplication.translate("MainWindow", u"\u6253\u5f00", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u6570\u636e", None))
-        self.lblIP.setText(QCoreApplication.translate("MainWindow", u"IP", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u89d2\u8272", None))
-        self.btnConnect.setText(QCoreApplication.translate("MainWindow", u"\u8fde\u63a5", None))
-        self.lblCOM.setText(QCoreApplication.translate("MainWindow", u"COM", None))
-        self.btn2.setText("")
-        self.comboRoleType.setItemText(0, QCoreApplication.translate("MainWindow", u"TCP\u5ba2\u6237\u7aef", None))
-        self.comboRoleType.setItemText(1, QCoreApplication.translate("MainWindow", u"TCP\u670d\u52a1\u7aef", None))
-
-        self.comboMsgType.setItemText(0, QCoreApplication.translate("MainWindow", u"byte", None))
-        self.comboMsgType.setItemText(1, QCoreApplication.translate("MainWindow", u"hex", None))
-        self.comboMsgType.setItemText(2, QCoreApplication.translate("MainWindow", u"utf-8", None))
-
-        self.lineIP.setText(QCoreApplication.translate("MainWindow", u"0.0.0.0", None))
-        self.lineCOM.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.btnRecord.setText(QCoreApplication.translate("MainWindow", u"\u5f55\u5236", None))
-        self.btn1.setText("")
-    # retranslateUi
-

@@ -8,7 +8,6 @@
 #define _ESP32_H_
 
 #include "main.h"
-#include "usart.h"
 
 void ESP32_Send(uint8_t* data, uint16_t len);
 void ESP32_Receive(uint8_t* data, uint16_t len);

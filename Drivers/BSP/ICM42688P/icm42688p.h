@@ -71,17 +71,6 @@ enum icm42688_godr
     NUM_ICM42688_GODR
 };
 
-typedef struct
-{
-    float accel_x;
-    float accel_y;
-    float accel_z;
-    float gyro_x;
-    float gyro_y;
-    float gyro_z;
-    float Temperature;
-} ICM42688_Data_t;
-
 void ICM42688_Init(enum icm42688_afs afs, enum icm42688_aodr aodr, enum icm42688_gfs gfs, enum icm42688_godr godr);
 void ICM42688_ReadData(ICM42688_Data_t* Data);
 

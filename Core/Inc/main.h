@@ -16,9 +16,9 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
+  /* USER CODE END Header */
 
-/* Define to prevent recursive inclusion -------------------------------------*/
+  /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
 
@@ -26,7 +26,7 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
+  /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -36,27 +36,104 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+  typedef enum
+  {
+    CW,
+    CCW
+  } MotorDir;
 
-/* USER CODE END ET */
+  typedef struct
+  {
+    float accel_x;
+    float accel_y;
+    float accel_z;
+    float gyro_x;
+    float gyro_y;
+    float gyro_z;
+    float Temperature;
+  } ICM42688_Data_t;
 
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
+  typedef struct
+  {
+    int WifiSignalStrength;
+    float Voltage;
+    float Temperature;
+    ICM42688_Data_t IMUData;
+    struct
+    {
+      float Speed;
+      MotorDir Direction; // CW 或 CCW
+      float Amps;
+    } Motor[2];
+  } SensorData_t;
 
-/* USER CODE END EC */
+  typedef enum
+  {
+    CMD_MOVE,
+    CMD_SPIN,
+    CMD_MOTOR,
+    CMD_UNKNOWN
+  } CommandType;
 
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
+  typedef struct
+  {
+    int stop;         // move 命令中的 Stop 参数（是否急停，0表示不急停，1表示急停）
+    char sd;          // move 命令中的 S/D 参数（例如用字符 'S' 表示速度模式，'D' 表示距离模式）
+    char wasd[16];    // move 命令中的方向参数，可能是组合的 "W", "A", "S", "D"
+    int value;        // move 命令中的 Value 参数
+    int time;         // move 命令中的 Time 参数（如果为速度模式，运行时间；0表示无限）
+  } MoveParams;
 
-/* USER CODE END EM */
+  typedef struct
+  {
+    char lr;          // spin 命令中的 L/R 参数， 'L' 或 'R'
+    int angle;        // spin 命令中的角度参数
+  } SpinParams;
 
-/* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
+  typedef struct
+  {
+    int motorID;      // motor 命令中的 MotorID
+    char dir;         // motor 命令中的 Dir 参数，'C'（CW）或 'C'（CCW），可根据需要修改
+    int angle;        // motor 命令中的 Angle 参数
+  } MotorParams;
 
-/* USER CODE BEGIN EFP */
+  // 使用联合体存储不同类型命令的参数
+  typedef union
+  {
+    MoveParams move;
+    SpinParams spin;
+    MotorParams motor;
+  } CommandParams;
 
-/* USER CODE END EFP */
+  // 定义最终的命令结构体
+  typedef struct
+  {
+    CommandType type;
+    CommandParams params;
+  } Command;
 
-/* Private defines -----------------------------------------------------------*/
+  // ICM42688_Data_t imu_data;
+
+  /* USER CODE END ET */
+
+  /* Exported constants --------------------------------------------------------*/
+  /* USER CODE BEGIN EC */
+
+  /* USER CODE END EC */
+
+  /* Exported macro ------------------------------------------------------------*/
+  /* USER CODE BEGIN EM */
+
+  /* USER CODE END EM */
+
+  /* Exported functions prototypes ---------------------------------------------*/
+  void Error_Handler(void);
+
+  /* USER CODE BEGIN EFP */
+
+  /* USER CODE END EFP */
+
+  /* Private defines -----------------------------------------------------------*/
 #define LED1_Pin GPIO_PIN_2
 #define LED1_GPIO_Port GPIOC
 #define LED2_Pin GPIO_PIN_3
